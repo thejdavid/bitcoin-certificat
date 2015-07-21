@@ -1,1 +1,22 @@
-index.html.erb
+<table class="table table-striped">
+   <h1>My Certified Files</h1>
+   <thead>
+      <tr>
+         <th>File Name</th>
+         <th>Transaction number</th>
+         <th>Hash</th>
+      </tr>
+   </thead>
+   <tbody>
+<% @certificats.each do |certificat| %>
+      <tr>
+         <td><%= certificat.file_name %></td>
+         <td><%=certificat.btc_transaction %></td>
+         <td><%=certificat.file_hash %></td>
+      </tr>
+<% end %>
+   </tbody>
+</table>
+
+<%= form_tag(certificat_index_path, :id => 'file-dropzone', :class => 'dropzone')  do %>
+<% end %>
