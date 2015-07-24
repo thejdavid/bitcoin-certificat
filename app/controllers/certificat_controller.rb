@@ -6,7 +6,7 @@ class CertificatController < ApplicationController
     #creating the certificat and saving the record
     processing = Processing.new(params[:file].path)
     processing.transaction
-    certificat = Certificat.new(file_name:params[:file].original_filename, btc_transaction: processing.tx_hash,file_hash:processing.hash_document ,user_id:current_user)
+    certificat = Certificat.new(file_name:params[:file].original_filename, btc_transaction: processing.tx_hash ,file_hash:processing.hash_document ,user_id:current_user )
     if certificat.save
       redirect_to(certificat_index_path)
     else
@@ -14,9 +14,9 @@ class CertificatController < ApplicationController
     end
     #Saving the file
     name = params[:file].original_filename
-    directory = "/public"
+    directory = "public/test"
     path = File.join(directory, name)
-    File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
+    File.open(path, "wb") { |f| f.write(params[:file].read) }
     flash[:notice] = "File uploaded"
   end
 end
